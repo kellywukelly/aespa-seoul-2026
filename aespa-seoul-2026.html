@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#6d28d9">
+<title>aespa 首爾 4D3N 手冊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{
+    --bg:#f6f3fb; --card:#ffffff; --ink:#1e1b2e; --muted:#6b6880; --line:#ece7f5;
+    --p:#7c3aed; --p-d:#5b21b6; --p-l:#f3ecff; --pink:#ec4899; --amber-bg:#fff7e6; --amber:#9a5b00;
+    --green:#10b981; --radius:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--bg)}
+  body{font-family:"Noto Sans TC","Noto Sans KR",-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);
+       line-height:1.55;padding-bottom:calc(32px + env(safe-area-inset-bottom))}
+  button{font:inherit;border:0;cursor:pointer;background:none;color:inherit}
+  a{color:inherit;text-decoration:none}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);
+         -webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+  .wrap{max-width:640px;margin:0 auto;padding:0 16px}
+  .hbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 0}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0}
+  .logo{width:38px;height:38px;border-radius:12px;flex:none;display:grid;place-items:center;font-size:19px;
+        background:linear-gradient(135deg,#7c3aed,#a855f7 55%,#ec4899);box-shadow:0 4px 14px -4px rgba(124,58,237,.6)}
+  .brand h1{font-size:14px;font-weight:900;letter-spacing:.2px;white-space:nowrap}
+  .brand p{font-size:11px;color:var(--muted);white-space:nowrap}
+  .badge{display:inline-block;font-size:10px;font-weight:700;background:var(--p-l);color:var(--p);
+         padding:1px 7px;border-radius:99px;margin-left:4px;vertical-align:2px}
+  .hbtns{display:flex;gap:6px;flex:none}
+  .ibtn{height:34px;min-width:34px;padding:0 10px;border-radius:11px;font-size:12px;font-weight:700;
+        display:flex;align-items:center;gap:4px;background:#f1eef7;transition:transform .1s}
+  .ibtn:active{transform:scale(.94)}
+  .ibtn.pink{background:var(--pink);color:#fff}
+  .ibtn.purple{background:var(--p);color:#fff}
+  .tabs{display:flex;gap:6px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:none;padding:6px 13px;border-radius:99px;font-size:12px;font-weight:700;background:#f1eef7;color:#57536b;white-space:nowrap}
+  .tab.on{background:var(--p);color:#fff;box-shadow:0 3px 10px -3px rgba(124,58,237,.6)}
+
+  main{padding-top:16px}
+  .view{display:none;flex-direction:column;gap:14px;padding:2px 0 8px;background:var(--bg)}
+  .view.on{display:flex}
+
+  /* Hero */
+  .hero{position:relative;overflow:hidden;border-radius:24px;padding:22px 20px;color:#fff;
+        background:linear-gradient(140deg,#6d28d9,#4338ca 55%,#581c87)}
+  .hero.d2{background:linear-gradient(140deg,#db2777,#9333ea 60%,#5b21b6)}
+  .hero.d3{background:linear-gradient(140deg,#ea580c,#db2777 55%,#7c3aed)}
+  .hero.d4{background:linear-gradient(140deg,#0ea5e9,#6366f1 55%,#7c3aed)}
+  .hero.info{background:linear-gradient(140deg,#1e1b4b,#4c1d95 60%,#7c3aed)}
+  .hero .big{position:absolute;right:-10px;bottom:-24px;font-size:120px;opacity:.13;pointer-events:none}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);padding:3px 11px;border-radius:99px;
+        font-size:11px;font-weight:700;letter-spacing:.4px}
+  .dot{width:7px;height:7px;border-radius:50%;background:#4ade80}
+  .hero h2{font-size:21px;font-weight:900;line-height:1.35;margin:10px 0 6px}
+  .hero p{font-size:12px;opacity:.85}
+
+  /* Cards */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+  .card.feature{border:2px solid #e4d6ff}
+  .ctitle{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+  .ctitle h3{font-size:14px;font-weight:900}
+  .ctitle small{display:block;font-size:11px;color:var(--p);font-weight:500}
+  .pill{font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;background:var(--p);color:#fff;white-space:nowrap}
+  .pill.pink{background:var(--pink)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .seat{background:#faf7ff;border:1px solid #ece2ff;border-radius:14px;padding:10px}
+  .seat .who{font-size:10px;font-weight:700;color:#9a96ad;letter-spacing:.3px}
+  .seat .pos{font-size:13px;font-weight:900;margin:2px 0}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--p)}
+  .warn{display:flex;gap:8px;background:var(--amber-bg);border:1px solid #fde3a7;color:var(--amber);border-radius:14px;
+        padding:10px 12px;font-size:12px;margin-top:10px}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:13px}
+  .kv dt{color:var(--muted);font-weight:500;white-space:nowrap}
+  .kv dd{font-weight:700}
+
+  /* Timeline */
+  .tl{position:relative;display:flex;flex-direction:column;gap:10px}
+  .tl::before{content:"";position:absolute;left:21px;top:14px;bottom:14px;width:2px;background:#e4dcf3;border-radius:2px}
+  .item{position:relative;display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px 12px 10px}
+  .item.hl{border:2px solid #c4a5ff;background:linear-gradient(180deg,#fbf8ff,#fff)}
+  .ico{flex:none;width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid #e4dcf3;display:grid;place-items:center;
+       font-size:13px;z-index:1;margin-top:1px}
+  .item.hl .ico{border-color:var(--p);background:var(--p-l)}
+  .body{flex:1;min-width:0}
+  .time{font-size:11px;font-weight:800;color:var(--p);letter-spacing:.3px}
+  .item h4{font-size:14px;font-weight:900;line-height:1.4;margin:1px 0 3px}
+  .item p,.item li{font-size:12.5px;color:#4b4760}
+  .item ul{padding-left:16px;margin-top:3px}
+  .item li{margin:2px 0}
+  .tip{margin-top:6px;background:var(--p-l);border-radius:10px;padding:7px 9px;font-size:12px;color:#4c1d95}
+  .tip b{color:var(--p-d)}
+  .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .act{font-size:11px;font-weight:700;padding:4px 9px;border-radius:99px;background:#f1eef7;color:#4b4760}
+  .act.map{background:#e8f8ef;color:#047857}
+
+  /* Delivery */
+  .kcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+  .kcard .lab{font-size:11px;font-weight:800;color:var(--pink);letter-spacing:.4px}
+  .kr{font-family:"Noto Sans KR",sans-serif;font-size:20px;font-weight:700;line-height:1.5;margin:6px 0;word-break:keep-all}
+  .zh{font-size:12px;color:var(--muted)}
+  .cbtn{margin-top:10px;font-size:12px;font-weight:700;padding:7px 12px;border-radius:11px;background:var(--p);color:#fff}
+
+  /* Checklist */
+  .ck{display:flex;align-items:flex-start;gap:10px;padding:11px 2px;border-bottom:1px solid var(--line);font-size:13.5px;cursor:pointer}
+  .ck:last-child{border-bottom:0}
+  .ck input{display:none}
+  .box{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid #cfc4e6;display:grid;place-items:center;color:#fff;font-size:13px;margin-top:1px}
+  .ck input:checked + .box{background:var(--green);border-color:var(--green)}
+  .ck input:checked ~ span{color:#a3a0b3;text-decoration:line-through}
+  .prog{height:8px;border-radius:99px;background:#ece7f5;overflow:hidden;margin-top:8px}
+  .prog i{display:block;height:100%;background:linear-gradient(90deg,#a855f7,#ec4899);transition:width .25s}
+
+  /* Modal */
+  .mask{position:fixed;inset:0;z-index:50;background:rgba(20,10,40,.45);display:none;align-items:flex-end;justify-content:center}
+  .mask.on{display:flex}
+  .sheet{width:100%;max-width:640px;background:#fff;border-radius:24px 24px 0 0;padding:18px 18px calc(22px + env(safe-area-inset-bottom))}
+  .sheet h3{font-size:16px;font-weight:900;display:flex;justify-content:space-between;align-items:center}
+  .field{margin-top:12px}
+  .field label{font-size:11px;font-weight:700;color:var(--muted)}
+  .field input{width:100%;margin-top:4px;font:inherit;font-size:22px;font-weight:800;padding:10px 12px;border-radius:14px;
+               border:2px solid var(--line);background:#faf8fd;outline:none}
+  .field input:focus{border-color:#c4a5ff}
+  .quick{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .quick button{font-size:12px;font-weight:700;padding:6px 10px;border-radius:99px;background:var(--p-l);color:var(--p-d)}
+  .note{font-size:11px;color:var(--muted);margin-top:10px}
+
+  /* Toast */
+  #toast{position:fixed;left:50%;top:90px;transform:translate(-50%,-8px);z-index:60;background:rgba(30,27,46,.92);color:#fff;
+         font-size:13px;padding:9px 16px;border-radius:14px;opacity:0;pointer-events:none;transition:.25s;white-space:nowrap}
+  #toast.on{opacity:1;transform:translate(-50%,0)}
+  .foot{text-align:center;font-size:11px;color:#a3a0b3;padding:6px 0 4px}
+  @media (max-width:380px){ .ibtn span{display:none} .brand p{display:none} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="hbar">
+      <div class="brand">
+        <div class="logo">💜</div>
+        <div>
+          <h1>aespa in SEOUL<span class="badge">4D3N</span></h1>
+          <p id="countdown">11.29 (日) — 12.02 (三)</p>
+        </div>
+      </div>
+      <div class="hbtns">
+        <button class="ibtn pink" onclick="exportImage()">📷<span>存圖</span></button>
+        <button class="ibtn" onclick="openCalc()" title="匯率換算">₩</button>
+        <button class="ibtn purple" onclick="copyPlan()">📋<span>文字</span></button>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button class="tab on" data-v="d1">D1 (日) 💜 見面會</button>
+      <button class="tab" data-v="d2">D2 (一) 聖水＋特展</button>
+      <button class="tab" data-v="d3">D3 (二) 一隻雞＋明洞</button>
+      <button class="tab" data-v="d4">D4 (三) ✈️ 返台</button>
+      <button class="tab" data-v="info">🎫 機酒票券</button>
+      <button class="tab" data-v="delivery">🛵 外送小卡</button>
+      <button class="tab" data-v="check">✅ 清單</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- DAY 1 -->
+  <section class="view on" id="view-d1">
+    <div class="hero">
+      <div class="big">🎤</div>
+      <span class="chip"><span class="dot"></span>DAY 1 • 2026.11.29 星期日</span>
+      <h2>落地首爾 ➔ 💜 見面會 ➔ 汗蒸幕 ➔ 宵夜 BHC 炸雞</h2>
+      <p>11:20 降落仁川 T2，飯店寄放行李後直奔高麗大化汀體育館！</p>
+    </div>
+
+    <div class="card feature">
+      <div class="ctitle">
+        <div><h3>🎫 2026 aespa FAN MEETING</h3><small>“MY 보고싶다 ae가”・高麗大學 化汀體育館</small></div>
+        <span class="pill">16:00 開演</span>
+      </div>
+      <div class="grid2">
+        <div class="seat"><div class="who">CHEN HSUAN WU</div><div class="pos">2樓 A區 16排 13號</div><div class="mono">M262375755</div></div>
+        <div class="seat"><div class="who">陳雅慧</div><div class="pos">2樓 B區 15排 17號</div><div class="mono">M268706831</div></div>
+      </div>
+      <div class="warn">⚠️<div><b>實名制驗票：</b>務必帶<b>護照正本</b>＋ Melon Global 購票 QR／預約單截圖。</div></div>
+    </div>
+
+    <div class="tl" data-day="d1"></div>
+  </section>
+
+  <!-- DAY 2 -->
+  <section class="view" id="view-d2">
+    <div class="hero d2">
+      <div class="big">🎨</div>
+      <span class="chip"><span class="dot"></span>DAY 2 • 2026.11.30 星期一</span>
+      <h2>聖水潮店＋香氛 ➔ 🎨 D'FESTA 特展 ➔ 🥩 乙支路烤肉</h2>
+      <p>特展 16:20 場次（展期最後一天），15:50 前要到 IFC Mall B3 換票！</p>
+    </div>
+    <div class="tl" data-day="d2"></div>
+  </section>
+
+  <!-- DAY 3 -->
+  <section class="view" id="view-d3">
+    <div class="hero d3">
+      <div class="big">🐔</div>
+      <span class="chip"><span class="dot"></span>DAY 3 • 2026.12.01 星期二</span>
+      <h2>彩虹蛋糕 ➔ 🐔 一隻雞 ➔ No Brand ➔ 明洞小卡街 ➔ 樂天超市裝箱</h2>
+      <p>今天是購物日，晚上在樂天超市退稅＋免費紙箱封箱。</p>
+    </div>
+    <div class="tl" data-day="d3"></div>
+  </section>
+
+  <!-- DAY 4 -->
+  <section class="view" id="view-d4">
+    <div class="hero d4">
+      <div class="big">✈️</div>
+      <span class="chip"><span class="dot"></span>DAY 4 • 2026.12.02 星期三</span>
+      <h2>仁川 T2 輕鬆登機 ➔ 平安返台</h2>
+      <p>CI161 12:30 起飛，08:00 退房出發時間充裕。</p>
+    </div>
+    <div class="tl" data-day="d4"></div>
+  </section>
+
+  <!-- INFO -->
+  <section class="view" id="view-info">
+    <div class="hero info">
+      <div class="big">🎫</div>
+      <span class="chip">機・酒・票 速查</span>
+      <h2>重要資訊一頁看完</h2>
+      <p>換票、入住、報到需要的資料都在這裡。</p>
+    </div>
+
+    <div class="card">
+      <div class="ctitle"><div><h3>✈️ 航班｜中華航空</h3><small>每人免費托運 1 件 × 23 公斤</small></div><span class="pill">CI160 / CI161</span></div>
+      <dl class="kv">
+        <dt>去程 11/29 (日)</dt><dd>CI160　07:50 桃園 T1 ➔ 11:20 仁川 T2</dd>
+        <dt>回程 12/02 (三)</dt><dd>CI161　12:30 仁川 T2 ➔ 14:20 桃園 T1</dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <div class="ctitle"><div><h3>🏨 東大門阿里郎希爾飯店</h3><small>아리랑힐 호텔 동대문</small></div></div>
+      <dl class="kv">
+        <dt>地址</dt><dd>서울 성북구 아리랑로 8</dd>
+        <dt>交通</dt><dd>4 號線／牛耳新設線「誠信女子大學站」6 號出口直達</dd>
+      </dl>
+      <div class="acts"><a class="act map" target="_blank" href="https://map.naver.com/p/search/%EC%95%84%EB%A6%AC%EB%9E%91%ED%9E%90%20%ED%98%B8%ED%85%94%20%EB%8F%99%EB%8C%80%EB%AC%B8">📍 Naver 地圖</a>
+      <button class="act" onclick="copyText('서울 성북구 아리랑로 8 (아리랑힐 호텔)')">複製地址</button></div>
+    </div>
+
+    <div class="card feature">
+      <div class="ctitle"><div><h3>💜 aespa FAN MEETING</h3><small>11/29 (日) 16:00 KST・高麗大學 化汀體育館</small></div><span class="pill">Melon Global</span></div>
+      <div class="grid2">
+        <div class="seat"><div class="who">CHEN HSUAN WU</div><div class="pos">2樓 A區 16排 13號</div><div class="mono">M262375755</div></div>
+        <div class="seat"><div class="who">陳雅慧</div><div class="pos">2樓 B區 15排 17號</div><div class="mono">M268706831</div></div>
+      </div>
+      <div class="warn">🚕<div><b>避坡秘訣：</b>飯店門口直接搭計程車到體育館門口（約 10 分鐘，₩5,500）。</div></div>
+    </div>
+
+    <div class="card feature">
+      <div class="ctitle"><div><h3>🎨 D'FESTA THE ORIGIN 特展</h3><small>11/30 (一) 16:20・汝矣島 IFC Mall B3 MPX GALLERY</small></div><span class="pill pink">最後一天</span></div>
+      <dl class="kv">
+        <dt>預訂人</dt><dd>WU CHEN HSUAN</dd>
+        <dt>票數</dt><dd>3 張自由座（KRW 96,000 已付清）</dd>
+        <dt>票 1</dt><dd class="mono">T3109640679</dd>
+        <dt>票 2</dt><dd class="mono">T3109640680</dd>
+        <dt>票 3</dt><dd class="mono">T3109640681</dd>
+      </dl>
+      <div class="warn">⏰<div>至少提前 30 分鐘（<b>15:50 前</b>）憑<b>護照正本</b>至票務處換票。</div></div>
+    </div>
+  </section>
+
+  <!-- DELIVERY -->
+  <section class="view" id="view-delivery">
+    <div class="hero info">
+      <div class="big">🛵</div>
+      <span class="chip">出示給飯店櫃台代訂</span>
+      <h2>外送韓文小卡</h2>
+      <p>直接把手機拿給櫃台看，或按「複製韓文」貼給店家。</p>
+    </div>
+
+    <div class="kcard">
+      <div class="lab">🏨 飯店地址・取餐方式</div>
+      <div class="kr">서울 성북구 아리랑로 8<br>(아리랑힐 호텔)<br>1층 로비에서 받겠습니다</div>
+      <div class="zh">首爾城北區阿里郎路 8（阿里郎希爾飯店）・1 樓大廳領取</div>
+      <button class="cbtn" onclick="copyText('서울 성북구 아리랑로 8 (아리랑힐 호텔)\n1층 로비에서 받겠습니다')">複製韓文</button>
+    </div>
+
+    <div class="kcard">
+      <div class="lab">🍗 DAY 1 宵夜・BHC 炸雞</div>
+      <div class="kr">뿌링클 치킨 한 마리<br>+ 달콤바삭치즈볼 (5개)</div>
+      <div class="zh">Bburinkle 根火炸雞 1 隻 ＋ 甜脆起司球 5 顆</div>
+      <button class="cbtn" onclick="copyText('뿌링클 치킨 한 마리 + 달콤바삭치즈볼 (5개)')">複製韓文</button>
+    </div>
+
+    <div class="kcard">
+      <div class="lab">🌶️ DAY 2 宵夜・東大門獵奇辣炒年糕</div>
+      <div class="kr">엽기떡볶이 엽기반반 (초보맛)<br>+ 치즈추가 + 김말이</div>
+      <div class="zh">半年糕半魚板・新手辣度 ＋ 加起司 ＋ 炸海苔捲</div>
+      <button class="cbtn" onclick="copyText('엽기떡볶이 엽기반반 (초보맛) + 치즈추가 + 김말이')">複製韓文</button>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="view" id="view-check">
+    <div class="card">
+      <div class="ctitle"><div><h3>🎒 必備隨身清單</h3><small id="ckcount">0 / 0 已完成</small></div>
+        <button class="act" onclick="resetCheck()">重設</button></div>
+      <div class="prog"><i id="ckbar" style="width:0"></i></div>
+      <div id="cklist" style="margin-top:6px"></div>
+    </div>
+  </section>
+
+  <div class="foot">💜 2026 aespa in SEOUL・Have a nice trip!</div>
+</main>
+
+<!-- 匯率換算 -->
+<div class="mask" id="calc" onclick="if(event.target===this)closeCalc()">
+  <div class="sheet">
+    <h3>₩ 韓元 ⇄ 台幣 <button class="act" onclick="closeCalc()">關閉</button></h3>
+    <div class="field"><label>韓元 KRW</label><input id="krw" inputmode="decimal" placeholder="0"></div>
+    <div class="field"><label>台幣 TWD</label><input id="twd" inputmode="decimal" placeholder="0"></div>
+    <div class="quick">
+      <button onclick="setKRW(5500)">₩5,500 計程車</button>
+      <button onclick="setKRW(9000)">₩9,000 湯飯</button>
+      <button onclick="setKRW(50000)">₩50,000</button>
+      <button onclick="setKRW(96000)">₩96,000 特展</button>
+    </div>
+    <div class="field"><label>匯率（1 韓元 = ? 台幣，可自行修改，會記住）</label><input id="rate" inputmode="decimal" style="font-size:16px"></div>
+    <div class="note">出發前可依當天銀行或換錢所牌價修改匯率。</div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- LINE 分享用純文字 -->
+<script type="text/plain" id="plain">============================================================
+💜 2026 首爾 aespa 見面會 ＋ 探店美食 4天3夜 專屬旅遊手冊 💜
+📅 日期：2026.11.29 (日) ～ 2026.12.02 (三)
+🏨 住宿：東大門阿里郎希爾飯店 (아리랑힐 호텔 동대문)
+   地址：서울 성북구 아리랑로 8
+   交通：地鐵 4 號線／牛耳新設線「誠信女子大學站」6 號出口直達
+
+✈️ 【航班資訊】（中華航空 CI160 / CI161）
+• 去程：11/29 (日) 07:50 台北桃園 T1 ➔ 11:20 仁川 T2
+• 回程：12/02 (三) 12:30 仁川 T2 ➔ 14:20 台北桃園 T1
+• 行李額度：每人免費托運行李 1 件 × 23 公斤
+
+🎫 【重要票券速查】
+1. 💜 2026 aespa FAN MEETING “MY 보고싶다 ae가”
+   時間：2026.11.29 (日) 16:00 (KST)
+   地點：高麗大學首爾校區 化汀體育館 (고려대학교 화정체육관)
+   座位與預約編號：
+   CHEN HSUAN WU：2樓 A區 16排 13號 (預約號: M262375755)
+   陳雅慧：2樓 B區 15排 17號 (預約號: M268706831)
+   必備：護照正本 ＋ Melon Global 購票 QR / 預約單截圖
+   避坡秘訣：飯店門口直接搭計程車到體育館門口（約 10 分鐘，₩5,500）
+2. 🎨 汝矣島 IFC Mall【D'FESTA THE ORIGIN】特展
+   時間：2026.11.30 (一) 16:20 場次（展期最後一天！）
+   地點：汝矣島 IFC Mall 地下 3 樓 MPX GALLERY
+   預訂人：WU CHEN HSUAN（共 3 張自由座，KRW 96,000 已付清）
+   預訂編號：T3109640679 / T3109640680 / T3109640681
+   規定：請至少提前 30 分鐘（15:50 前）憑護照正本至票務處換票
+
+🗓️ 【每日詳細行程】
+🌟 Day 1：11/29 (日)【落地首爾 ➔ 💜 見面會 ➔ 汗蒸幕 ➔ 宵夜 BHC 炸雞】
+• 11:20 班機抵達仁川 T2 ➔ 快速通關領行李
+• 12:20 - 13:40 機場交通二選一至飯店寄放行李：
+   首選捷運：AREX 直達車到首爾站 (51分) 轉 4 號線到誠信女大站 (14分)
+   直達巴士：T2 B1 31號月台搭 6011 號巴士直達誠信女大站（下車過馬路即飯店）
+• 13:40 - 14:00【午餐快吃】誠信女大商圈買現做麻油飯捲、熱魚板湯或香蕉牛奶墊胃
+• 14:00 - 15:30 飯店門口搭計程車 10 分鐘直達高麗大化汀體育館，實名換票拍照
+• 16:00 - 18:30+ 💜 2026 aespa 見面會開唱！
+• 19:30 - 21:30【晚餐】Sparex 東廟店 24H 汗蒸幕，食堂吃嫩豆腐鍋/海帶湯，甜米露配烤蛋
+• 22:00 回飯店 Check-in，【宵夜外送 1】BHC 炸雞：뿌링클 ＋ 달콤바삭치즈볼 5 顆
+
+🌟 Day 2：11/30 (一)【聖水潮店+香氛 ➔ 🎨 D'FESTA 特展 ➔ 🥩 乙支路烤肉 ➔ 宵夜獵奇年糕】
+• 09:30 - 10:45【早餐】Bisabeol 全州豆芽菜湯飯（首爾林站 1 號出口步行 4 分鐘，₩9,000）
+• 11:00 - 12:00【KWANGYA SEOUL】SM 總部 B1，開門第一批買周邊
+• 12:15 - 13:30【午餐】Silbiok 實費屋 牛骨白菜湯飯 ＋ 辣炒牛肉
+• 13:30 - 15:30【下午茶＆香氛】Betong 鹽麵包、韓貞仙水果大福、AVA生巧克力、Maman 冰淇淋；TAMBURINS、hetras. 聖水旗艦店
+• 15:50 抵達汝矣島 IFC Mall B3 MPX GALLERY 憑護照換票
+• 16:20 - 17:50【看展】D'FESTA THE ORIGIN（看展時先用 CatchTable 抽晚餐號碼牌）
+• 18:30 - 20:30【晚餐】山清炭火花園 乙支路店 智異山厚切黑豬肉
+• 22:00【宵夜外送 2】東大門獵奇辣炒年糕：엽기반반(초보맛) ＋ 起司 ＋ 炸海苔捲
+
+🌟 Day 3：12/01 (二)【彩虹蛋糕 ➔ 🐔 一隻雞 ➔ 🟡 No Brand ➔ 明洞小卡街 ➔ 樂天超市裝箱】
+• 09:15 - 10:30【早茶】Doredore 首爾站店 彩虹鮮奶油蛋糕＋熱美式
+• 11:00 - 12:30【午餐】陳玉華老奶奶元祖一隻雞（蒜泥入湯→年糕→手切麵＋泡菜）
+• 12:45 - 14:00【超市 1】No Brand 東大門 DOOTA MALL 店 4 樓
+• 14:30 - 18:30【追星逛街】明洞台灣人小卡店(明洞10街19)、Olive Young 旗艦店、樂天百貨 Avenuel
+• 18:30 - 20:00【晚餐】明洞餃子 本店 雞湯刀削麵＋蒸餃
+• 20:30 - 22:30【超市 2】樂天超市 ZETTAPLEX 首爾站店（營業至 24:00，現場退稅＋免費紙箱）
+
+🌟 Day 4：12/02 (三)【✈️ 仁川 T2 ➔ 平安返台】
+• 08:00 退房，4 號線約 15 分鐘至首爾站
+• 08:30 - 09:20 AREX 直達車至仁川 T2
+• 09:30 - 11:30 CI161 報到託運 ➔ 退稅 ➔ 免稅區早午餐
+• 12:00 登機 ➔ 12:30 起飛 ➔ 14:20 抵達桃園 T1
+
+🎒 【必備清單】護照正本、Melon Global 購票截圖、NOL World 預約確認函、aespa 手燈＋AAA 電池、保暖衣物、雙圓孔轉接頭＋行動電源、WOWPASS / T-money
+============================================================</script>
+
+<script>
+/* ---------- 行程資料 ---------- */
+const NAVER = q => 'https://map.naver.com/p/search/' + encodeURIComponent(q);
+
+const DAYS = {
+  d1: [
+    {t:'11:20', i:'🛬', h:'抵達仁川 T2', p:'快速通關、領行李。'},
+    {t:'12:20 – 13:40', i:'🚆', h:'機場 ➔ 飯店寄放行李（二選一）', ul:[
+      '<b>首選捷運：</b>AREX 直達車到首爾站（51 分）轉 4 號線到誠信女大站（14 分），時間精準不塞車',
+      '<b>直達巴士：</b>T2 B1 31 號月台搭 6011 號巴士直達誠信女大站，下車過馬路即飯店']},
+    {t:'13:40 – 14:00', i:'🍙', h:'午餐快吃', p:'誠信女大商圈買現做麻油飯捲、熱魚板湯或香蕉牛奶墊胃。'},
+    {t:'14:00 – 15:30', i:'🚕', h:'計程車直達高麗大化汀體育館', p:'飯店門口搭計程車約 10 分鐘（₩5,500），實名換票、拍照。', map:'고려대학교 화정체육관'},
+    {t:'16:00 – 18:30+', i:'💜', h:'2026 aespa 見面會開演！', p:'“MY 보고싶다 ae가”　手燈電池記得先裝好！', hl:true},
+    {t:'19:30 – 21:30', i:'♨️', h:'晚餐｜Sparex 東廟店 24H 汗蒸幕', p:'食堂吃嫩豆腐鍋／海帶湯，喝甜米露配烤蛋，排毒放鬆。', map:'스파렉스 동묘점'},
+    {t:'22:00', i:'🍗', h:'回飯店 Check-in ＋ 宵夜外送 1', p:'<b>BHC 炸雞：</b>뿌링클（根火炸雞）＋ 달콤바삭치즈볼（甜脆起司球 5 顆）', go:'delivery'}
+  ],
+  d2: [
+    {t:'09:30 – 10:45', i:'🍲', h:'早餐｜Bisabeol 全州豆芽菜湯飯', p:'首爾林站 1 號出口步行 4 分鐘，近 KWANGYA。營業 07:00–22:00，只賣豆芽湯飯 ₩9,000。',
+      tip:'<b>吃法：</b>熱湯舀入半熟水波蛋＋海苔絲拌勻喝下，白飯倒進砂鍋配醃辣蘿蔔！', map:'비사벌전주콩나물국밥 성수'},
+    {t:'11:00 – 12:00', i:'🛍️', h:'KWANGYA SEOUL', p:'SM 總部 B1，開門第一批買周邊配件。', map:'광야 서울'},
+    {t:'12:15 – 13:30', i:'🥘', h:'午餐｜Silbiok 實費屋', p:'濃郁牛骨白菜湯飯 ＋ 辣炒牛肉。', map:'실비옥 성수'},
+    {t:'13:30 – 15:30', i:'🧁', h:'下午茶 ＆ 聖水洞香氛巡禮', ul:[
+      '<b>4 大甜點：</b>Betong 鹽麵包、韓貞仙水果大福、AVA 生巧克力、Maman 冰淇淋',
+      '<b>TAMBURINS 聖水旗艦店：</b>廢墟地下美術館，Jennie 蛋形香水、貝殼護手霜',
+      '<b>hetras. 聖水旗艦店：</b>高 CP 值 Hotel Wood 木質調大容量擴香'], map:'탬버린즈 성수'},
+    {t:'15:50', i:'🎫', h:'抵達 IFC Mall B3 MPX GALLERY 換票', p:'憑<b>護照正本</b>換票（最晚 15:50）。', map:'여의도 IFC몰'},
+    {t:'16:20 – 17:50', i:'🎨', h:"D'FESTA THE ORIGIN 特展", p:'60 分鐘觀展 ＋ 30 分鐘商店抽限定卡。', hl:true,
+      tip:'<b>17:00–17:30</b> 先用 CatchTable 線上抽晚餐號碼牌！'},
+    {t:'18:30 – 20:30', i:'🥩', h:'晚餐｜山清炭火花園 乙支路店', p:'智異山厚切黑豬肉炭烤。', map:'산청숯불가든 을지로'},
+    {t:'22:00', i:'🌶️', h:'回飯店 ＋ 宵夜外送 2', p:'<b>東大門獵奇辣炒年糕：</b>엽기반반（新手辣 초보맛）＋ 起司瀑布 ＋ 炸海苔捲', go:'delivery'}
+  ],
+  d3: [
+    {t:'09:15 – 10:30', i:'🍰', h:'早茶｜Doredore 首爾站店', p:'3 樓玻璃屋吃彩虹鮮奶油蛋糕 ＋ 熱美式。', map:'도레도레 서울역'},
+    {t:'11:00 – 12:30', i:'🐔', h:'午餐｜陳玉華老奶奶元祖一隻雞', p:'午餐重頭戲！', hl:true,
+      tip:'<b>SOP：</b>整碗蒜泥倒入高湯 → 加年糕 → 最後加手切麵並倒入酸辣泡菜，煮成泡菜雞湯麵！', map:'진옥화할매원조닭한마리'},
+    {t:'12:45 – 14:00', i:'🟡', h:'超市探店 1｜No Brand DOOTA MALL 店', p:'4 樓，一隻雞步行 5 分鐘。<br><b>必買：</b>紫薯洋芋片桶、黑巧克力排、曲奇餅乾桶、蜂蜜柚子茶球', map:'노브랜드 두타몰'},
+    {t:'14:30 – 18:30', i:'💳', h:'追星與逛街｜明洞', p:'東大門搭 4 號線 3 站到明洞站。', ul:[
+      '<b>台灣人開的小卡店</b>（明洞10街19）：中文溝通，補齊卡冊、卡膜、硬卡套',
+      'Olive Young 旗艦店買面膜彩妝',
+      '樂天百貨總店 Avenuel 免稅品'], map:'올리브영 명동 플래그십'},
+    {t:'18:30 – 20:00', i:'🥟', h:'晚餐｜明洞餃子 本店', p:'米其林必比登：雞湯刀削麵 ＋ 爆汁蒸餃（或布帳馬車小吃）。', map:'명동교자 본점'},
+    {t:'20:30 – 22:30', i:'📦', h:'超市探店 2｜樂天超市 ZETTAPLEX 首爾站店', p:'4 號線 2 站直達，營業至 24:00。',
+      tip:'集中掃貨辛拉麵、海苔禮盒、零食，<b>現場退稅＋免費紙箱封箱</b>，搭 4 號線載回飯店！', map:'롯데마트 제타플렉스 서울역점'}
+  ],
+  d4: [
+    {t:'08:00', i:'🧳', h:'飯店退房', p:'搭 4 號線約 15 分鐘到首爾站。'},
+    {t:'08:30 – 09:20', i:'🚄', h:'AREX 直達車 ➔ 仁川 T2', p:'車程 51 分鐘，不塞車。'},
+    {t:'09:30 – 11:30', i:'🛄', h:'CI161 報到託運', p:'每人 23kg ➔ 退稅 ➔ 免稅區享用早午餐。'},
+    {t:'12:00', i:'🎟️', h:'登機 ➔ 12:30 起飛', p:'中華航空 CI161', hl:true},
+    {t:'14:20', i:'🏠', h:'平安降落桃園 T1', p:'滿載而歸！💜'}
+  ]
+};
+
+function renderDays(){
+  document.querySelectorAll('.tl').forEach(tl=>{
+    tl.innerHTML = DAYS[tl.dataset.day].map(x=>`
+      <div class="item${x.hl?' hl':''}">
+        <div class="ico">${x.i}</div>
+        <div class="body">
+          <div class="time">${x.t}</div>
+          <h4>${x.h}</h4>
+          ${x.p?`<p>${x.p}</p>`:''}
+          ${x.ul?`<ul>${x.ul.map(l=>`<li>${l}</li>`).join('')}</ul>`:''}
+          ${x.tip?`<div class="tip">💡 ${x.tip}</div>`:''}
+          ${(x.map||x.go)?`<div class="acts">
+            ${x.map?`<a class="act map" target="_blank" rel="noopener" href="${NAVER(x.map)}">📍 Naver 地圖</a>`:''}
+            ${x.go?`<button class="act" onclick="show('${x.go}')">🛵 看外送小卡</button>`:''}
+          </div>`:''}
+        </div>
+      </div>`).join('');
+  });
+}
+
+/* ---------- 分頁 ---------- */
+let current='d1';
+function show(v){
+  current=v;
+  document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id==='view-'+v));
+  document.querySelectorAll('.tab').forEach(e=>{
+    const on=e.dataset.v===v; e.classList.toggle('on',on);
+    if(on) e.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab'); if(b) show(b.dataset.v);});
+
+/* ---------- 小工具 ---------- */
+const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+             set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let tt;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),1800);}
+async function copyText(s){
+  try{await navigator.clipboard.writeText(s);}
+  catch(e){const a=document.createElement('textarea');a.value=s;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();}
+  toast('✅ 已複製');
+}
+function copyPlan(){copyText(document.getElementById('plain').textContent.trim()).then(()=>toast('✅ 完整行程已複製，可貼到 LINE'));}
+
+/* ---------- 存成圖片 ---------- */
+async function exportImage(){
+  if(typeof html2canvas==='undefined'){toast('⚠️ 需要網路才能存圖');return;}
+  const el=document.getElementById('view-'+current);
+  toast('📷 產生圖片中…');
+  try{
+    const c=await html2canvas(el,{scale:2,backgroundColor:'#f6f3fb',useCORS:true});
+    const a=document.createElement('a');
+    const names={d1:'D1見面會',d2:'D2聖水特展',d3:'D3一隻雞明洞',d4:'D4返台',info:'機酒票券',delivery:'外送小卡',check:'清單'};
+    a.download='aespa首爾_'+names[current]+'.png';
+    a.href=c.toDataURL('image/png');
+    document.body.appendChild(a);a.click();a.remove();
+    toast('✅ 圖片已產生');
+  }catch(e){toast('⚠️ 存圖失敗，請改用截圖');}
+}
+
+/* ---------- 匯率 ---------- */
+const $=id=>document.getElementById(id);
+let rate=store.get('aespa_rate',0.0225);
+$('rate').value=rate;
+const fmt=(n,d)=>isFinite(n)?n.toLocaleString('zh-TW',{maximumFractionDigits:d}):'';
+const num=s=>parseFloat(String(s).replace(/,/g,''));
+$('krw').addEventListener('input',()=>{const v=num($('krw').value);$('twd').value=isNaN(v)?'':fmt(v*rate,1);});
+$('twd').addEventListener('input',()=>{const v=num($('twd').value);$('krw').value=isNaN(v)?'':fmt(v/rate,0);});
+$('rate').addEventListener('input',()=>{const r=num($('rate').value);if(r>0){rate=r;store.set('aespa_rate',r);$('krw').dispatchEvent(new Event('input'));}});
+function setKRW(n){$('krw').value=fmt(n,0);$('krw').dispatchEvent(new Event('input'));}
+function openCalc(){$('calc').classList.add('on');}
+function closeCalc(){$('calc').classList.remove('on');}
+
+/* ---------- 清單 ---------- */
+const CHECK=[
+  '護照正本（效期 6 個月以上，見面會實名驗票唯一依據）',
+  'Melon Global 購票證明截圖（M262375755、M268706831）',
+  'NOL World 預約確認函（11/30 16:20 場次，T3109640679～81）',
+  'aespa 手燈 ＋ 備用 AAA 4 號電池',
+  '保暖衣物（11 月底首爾約 0℃～6℃：長版羽絨衣、圍巾、暖暖包）',
+  '韓國雙圓孔轉接頭（220V）＋ 大容量行動電源',
+  'WOWPASS / T-money 交通卡'
+];
+let done=store.get('aespa_check',[]);
+function renderCheck(){
+  $('cklist').innerHTML=CHECK.map((c,i)=>`<label class="ck"><input type="checkbox" ${done.includes(i)?'checked':''} onchange="tick(${i},this.checked)"><span class="box">✓</span><span>${c}</span></label>`).join('');
+  $('ckcount').textContent=`${done.length} / ${CHECK.length} 已完成`;
+  $('ckbar').style.width=(done.length/CHECK.length*100)+'%';
+}
+function tick(i,on){done=done.filter(x=>x!==i);if(on)done.push(i);store.set('aespa_check',done);renderCheck();}
+function resetCheck(){done=[];store.set('aespa_check',done);renderCheck();}
+
+/* ---------- 倒數 & 自動開當天 ---------- */
+(function(){
+  const now=new Date(), dep=new Date('2026-11-29T07:50:00+08:00');
+  const days=Math.ceil((dep-now)/86400000);
+  if(days>0) $('countdown').textContent=`11.29 — 12.02・出發倒數 ${days} 天`;
+  const md=(now.getMonth()+1)+'/'+now.getDate();
+  const map={'11/29':'d1','11/30':'d2','12/1':'d3','12/2':'d4'};
+  renderDays(); renderCheck();
+  if(now.getFullYear()===2026 && map[md]) show(map[md]);
+})();
+</script>
+</body>
+</html>
